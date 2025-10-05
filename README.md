@@ -1,6 +1,6 @@
 # Security of Operations on Random Numbers
 
-This repository is a form of the NIST Test Suite repository, which contains the code for testing random number generators published by the US National Institute of Science and Technology (NIST). The code was created to accompany NIST SP-800-22 R1a, a copy of which can be found in this repository as [`nistspecialpublication800-22r1a.pdf`][1] (ref \[1]).
+This repository is a fork of the NIST Test Suite repository, which contains the code for testing random number generators published by the US National Institute of Science and Technology (NIST). The code was created to accompany NIST SP-800-22 R1a, a copy of which can be found in this repository as [`nistspecialpublication800-22r1a.pdf`][1] (ref \[1]).
 
 [1]: (assets/nistspecialpublication800-22r1a.pdf)
 
