@@ -1,15 +1,14 @@
-# The NIST Statistical Test Suite
+# Security of Operations on Random Numbers
 
-This repository contains the code for testing random number generators published by the US National Institute of Science and Technology (NIST). The code was created to accompany NIST SP-800-22 R1a, a copy of which can be found in this repository as [`nistspecialpublication800-22r1a.pdf`][1] (ref \[1]).
+This repository is a form of the NIST Test Suite repository, which contains the code for testing random number generators published by the US National Institute of Science and Technology (NIST). The code was created to accompany NIST SP-800-22 R1a, a copy of which can be found in this repository as [`nistspecialpublication800-22r1a.pdf`][1] (ref \[1]).
 
 [1]: (assets/nistspecialpublication800-22r1a.pdf)
-
-Given that this is rather useful code, and that it was unavailable in January 2019 due to the US government shutdown, I thought it would be useful to publish this for reference. (Call to action for civic hackers: we need a curated site that links to this kind of material.)
 
 **Contents:**
 <!-- TOC depthfrom:2 updateonsave:true -->
 
 - [Import structure](#import-structure)
+- [Testing operations on random numbers](#testing-operations-on-random-numbers)
 - [How to build on Ubuntu](#how-to-build-on-ubuntu)
     - [Sample run for known input](#sample-run-for-known-input)
     - [Sample test results](#sample-test-results)
@@ -25,6 +24,26 @@ Given that this is rather useful code, and that it was unavailable in January 20
 ## Import structure
 
 So that we can add the usual GitHub sugar and keep clear "what is new here" vs "what came from NIST", the NIST code is in the subdirectory `sts`.
+
+
+## Testing operations on random numbers
+Run the script `automation.sh` to see the results obtained on running the NIST Test Suite to measure the preservation of randomness on various operators on random numbers generated using device randomness. If the NIST test suite is not built already, this script builds it. The script auto-generates a sequence of 384,000,000 random bits and performs operations on it to obtain 192,000,000 random bits corresponding to the results of each operation type. Each is then tested fully using the test suite (`sts/assess`) for 128 bitstreams, each of size 1,500,000 bits, and the results (`finalAnalysisReport.txt`) are added to the (created) directory `reports/`
+```console
+$ ./automation.sh
+NIST suite found.
+Generating random bits
+Testing random using NIST suite
+Testing add using NIST suite
+Testing sub using NIST suite
+Testing mul using NIST suite
+Testing div using NIST suite
+Testing mod using NIST suite
+Testing or using NIST suite
+Testing and using NIST suite
+Testing xor using NIST suite
+Testing not using NIST suite
+All tests completed and reports generated.
+```
 
 ## How to build on Ubuntu
 
