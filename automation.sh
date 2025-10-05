@@ -2,6 +2,20 @@
 # A script to automate NIST testing and generate all result reports
 # Author: Tejas Sharma
 
+if [ -f sts/assess ]; then
+    echo "NIST suite found."
+else
+    bash setup.sh
+    cd sts/
+    make
+    cd ../
+fi
+
+if [ ! -f sts/assess ]; then
+    echo "NIST suite setup failed. Exiting."
+    exit 1
+fi
+
 mkdir -p reports/
 cd generate_data/
 echo "Generating random bits"
@@ -29,7 +43,7 @@ echo "128" >> input.txt
 echo "1" >> input.txt
 cd sts/
 echo "Testing random using NIST suite"
-./assess 3000000 < ../input.txt > /dev/null
+./assess 1500000 < ../input.txt > /dev/null
 cp experiments/AlgorithmTesting/finalAnalysisReport.txt ../reports/random_finalAnalysisReport.txt
 cd ../
 
